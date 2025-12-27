@@ -10,14 +10,12 @@ class AppTheme {
   static const darkBg = Color(0xFF0F172A);
   static const terminalBg = Color(0xFF1E293B);
   static const borderColor = Color(0xFF334155);
-  
+
   static ThemeData get theme => ThemeData(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: darkBg,
     primaryColor: primaryPurple,
-    textTheme: GoogleFonts.firaCodeTextTheme(
-      ThemeData.dark().textTheme,
-    ),
+    textTheme: GoogleFonts.firaCodeTextTheme(ThemeData.dark().textTheme),
     colorScheme: const ColorScheme.dark(
       primary: primaryPurple,
       secondary: electricCyan,
@@ -26,41 +24,37 @@ class AppTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: InputBorder.none,
-      hintStyle: TextStyle(
-        color: Colors.white.withOpacity(0.3),
-      ),
+      hintStyle: TextStyle(color: Colors.white.withAlpha(0.3 * 255 ~/ 1)),
     ),
   );
-  
+
   static BoxDecoration get terminalDecoration => BoxDecoration(
     color: terminalBg,
     borderRadius: BorderRadius.circular(12),
     border: Border.all(
-      color: primaryPurple.withOpacity(0.3),
+      color: primaryPurple.withAlpha(0.3 * 255 ~/ 1),
       width: 1,
     ),
     boxShadow: [
       BoxShadow(
-        color: primaryPurple.withOpacity(0.2),
+        color: primaryPurple.withAlpha(0.2 * 255 ~/ 1),
         blurRadius: 20,
         spreadRadius: 2,
       ),
     ],
   );
-  
+
   static BoxDecoration get glassDecoration => BoxDecoration(
-    color: Colors.white.withOpacity(0.05),
+    color: Colors.white.withAlpha(0.05 * 255 ~/ 1),
     borderRadius: BorderRadius.circular(12),
-    border: Border.all(
-      color: Colors.white.withOpacity(0.1),
-    ),
+    border: Border.all(color: Colors.white.withAlpha(0.1 * 255 ~/ 1)),
   );
-  
+
   static BoxDecoration neonGlow(Color color) => BoxDecoration(
     borderRadius: BorderRadius.circular(8),
     boxShadow: [
       BoxShadow(
-        color: color.withOpacity(0.5),
+        color: color.withAlpha(0.5 * 255 ~/ 1),
         blurRadius: 12,
         spreadRadius: 2,
       ),

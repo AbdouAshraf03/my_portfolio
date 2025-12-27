@@ -78,14 +78,14 @@ class _ProjectCardState extends State<_ProjectCard> {
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: _isHovered
-                        ? _color.withOpacity(0.6)
-                        : Colors.white.withOpacity(0.1),
+                        ? _color.withAlpha(0.6 * 255 ~/ 1)
+                        : Colors.white.withAlpha(0.1 * 255 ~/ 1),
                     width: _isHovered ? 2 : 1,
                   ),
                   boxShadow: _isHovered
                       ? [
                           BoxShadow(
-                            color: _color.withOpacity(0.3),
+                            color: _color.withAlpha(0.3 * 255 ~/ 1),
                             blurRadius: 20,
                             spreadRadius: 2,
                           ),
@@ -136,9 +136,11 @@ class _ProjectCardState extends State<_ProjectCard> {
                             vertical: 4,
                           ),
                           decoration: BoxDecoration(
-                            color: _color.withOpacity(0.15),
+                            color: _color.withAlpha(0.15 * 255 ~/ 1),
                             borderRadius: BorderRadius.circular(4),
-                            border: Border.all(color: _color.withOpacity(0.3)),
+                            border: Border.all(
+                              color: _color.withAlpha(0.3 * 255 ~/ 1),
+                            ),
                           ),
                           child: Text(
                             tech,
@@ -220,11 +222,13 @@ class _LinkButtonState extends State<_LinkButton> {
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
           decoration: BoxDecoration(
             color: _isHovered
-                ? widget.color.withOpacity(0.2)
+                ? widget.color.withAlpha(0.2 * 255 ~/ 1)
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(6),
             border: Border.all(
-              color: widget.color.withOpacity(_isHovered ? 0.8 : 0.4),
+              color: widget.color.withAlpha(
+                _isHovered ? 0.8 * 255 ~/ 1 : 0.4 * 255 ~/ 1,
+              ),
             ),
           ),
           child: Row(

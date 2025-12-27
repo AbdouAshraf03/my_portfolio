@@ -95,7 +95,7 @@ class _MainTabPageState extends State<MainTabPage> {
             ),
           ).animate().fadeIn(duration: 300.ms),
 
-          Divider(color: Colors.white.withOpacity(0.1), height: 1),
+          Divider(color: Colors.white.withAlpha(0.1 * 255 ~/ 1), height: 1),
 
           // Command history
           Expanded(
@@ -150,7 +150,7 @@ class _MainTabPageState extends State<MainTabPage> {
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               border: Border(
-                top: BorderSide(color: Colors.white.withOpacity(0.1)),
+                top: BorderSide(color: Colors.white.withAlpha(0.1 * 255 ~/ 1)),
               ),
             ),
             child: Row(
