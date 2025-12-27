@@ -42,7 +42,7 @@ class MainTabBloc extends Bloc<MainTabEvent, MainTabState> {
         break;
       case 'fact':
         response =
-            '> No HTML. No CSS. Just Flutter rendering the web.\n> Crafted by Abdou Ashraf me 🙂.';
+            '> No HTML. No CSS. Just Flutter rendering the web.\n> Crafted by Abdou Ashraf me 🙂.\n> One of the creators of BMO os.';
       case 'help':
         response = AppConstants.helpMessage;
         break;

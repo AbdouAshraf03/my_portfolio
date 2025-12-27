@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:my_portfolio/core/app_const.dart';
@@ -15,45 +16,55 @@ class AboutPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Header
-          Text(
-            '> Loading developer profile...',
-            style: TextStyle(color: AppTheme.electricCyan, fontSize: 14),
-          ).animate().fadeIn(duration: 300.ms),
+          AnimatedTextKit(
+            animatedTexts: [
+              TypewriterAnimatedText(
+                '> Loading developer profile...',
+                textStyle: const TextStyle(
+                  color: AppTheme.electricCyan,
+                  fontSize: 14,
+                ),
+                speed: Duration(milliseconds: 70),
+              ),
+            ],
+            isRepeatingAnimation: false,
+          ),
 
           const SizedBox(height: 24),
 
           // Bio Section
-          _buildInfoSection(
-            'Name',
-            AppConstants.name,
-            Icons.person_outline,
-          ).animate().fadeIn(delay: 100.ms).slideX(begin: -0.1),
+          _buildInfoSection('Name', AppConstants.name, Icons.person_outline),
 
-          _buildInfoSection(
-            'Role',
-            AppConstants.role,
-            Icons.code,
-          ).animate().fadeIn(delay: 200.ms).slideX(begin: -0.1),
+          _buildInfoSection('Role', AppConstants.role, Icons.code),
 
           _buildInfoSection(
             'Location',
             AppConstants.location,
             Icons.location_on_outlined,
-          ).animate().fadeIn(delay: 300.ms).slideX(begin: -0.1),
+          ),
 
           _buildInfoSection(
             'Status',
             AppConstants.status,
             Icons.check_circle_outline,
-          ).animate().fadeIn(delay: 400.ms).slideX(begin: -0.1),
+          ),
 
           const SizedBox(height: 32),
 
           // Skills Section
-          Text(
-            '> Initializing skill matrix...',
-            style: TextStyle(color: AppTheme.electricCyan, fontSize: 14),
-          ).animate().fadeIn(delay: 500.ms),
+          AnimatedTextKit(
+            animatedTexts: [
+              TypewriterAnimatedText(
+                '> Initializing skill matrix...',
+                textStyle: const TextStyle(
+                  color: AppTheme.electricCyan,
+                  fontSize: 14,
+                ),
+                speed: Duration(milliseconds: 70),
+              ),
+            ],
+            isRepeatingAnimation: false,
+          ),
 
           const SizedBox(height: 20),
 
@@ -72,17 +83,26 @@ class AboutPage extends StatelessWidget {
                   colors[index % colors.length],
                 )
                 .animate()
-                .fadeIn(delay: (600 + index * 100).ms)
+                .fadeIn(delay: (500 + index * 200).ms)
                 .slideX(begin: -0.2);
           }),
 
           const SizedBox(height: 32),
 
           // Tech Stack
-          Text(
-            '> Tech Stack:',
-            style: TextStyle(color: AppTheme.electricCyan, fontSize: 14),
-          ).animate().fadeIn(delay: 1000.ms),
+          AnimatedTextKit(
+            animatedTexts: [
+              TypewriterAnimatedText(
+                '> Tech Stack:',
+                textStyle: const TextStyle(
+                  color: AppTheme.electricCyan,
+                  fontSize: 14,
+                ),
+                speed: Duration(milliseconds: 70),
+              ),
+            ],
+            isRepeatingAnimation: false,
+          ),
 
           const SizedBox(height: 16),
 
@@ -96,19 +116,19 @@ class AboutPage extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: AppTheme.primaryPurple.withOpacity(0.2),
+                  color: AppTheme.primaryPurple.withAlpha(0.2 * 255 ~/ 1),
                   borderRadius: BorderRadius.circular(6),
                   border: Border.all(
-                    color: AppTheme.primaryPurple.withOpacity(0.5),
+                    color: AppTheme.primaryPurple.withAlpha(0.5 * 255 ~/ 1),
                   ),
                 ),
                 child: Text(
                   tech,
-                  style: TextStyle(color: AppTheme.primaryPurple, fontSize: 12),
+                  style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
               );
             }).toList(),
-          ).animate().fadeIn(delay: 1100.ms),
+          ).animate().fadeIn(delay: 600.ms),
         ],
       ),
     );
@@ -119,20 +139,27 @@ class AboutPage extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
         children: [
-          Icon(icon, size: 18, color: AppTheme.primaryPurple.withOpacity(0.8)),
+          Icon(
+            icon,
+            size: 18,
+            color: AppTheme.primaryPurple.withAlpha(0.8 * 255 ~/ 1),
+          ),
           const SizedBox(width: 10),
           Text(
             '$label: ',
             style: const TextStyle(color: Colors.white70, fontSize: 14),
           ),
           Expanded(
-            child: Text(
-              value,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
+            child: AnimatedTextKit(
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  value,
+                  textStyle: const TextStyle(color: Colors.white, fontSize: 14),
+                  speed: Duration(milliseconds: 70),
+                  cursor: '|',
+                ),
+              ],
+              isRepeatingAnimation: false,
             ),
           ),
         ],
@@ -173,7 +200,7 @@ class AboutPage extends StatelessWidget {
           Container(
             height: 8,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.05),
+              color: Colors.white.withAlpha(0.05 * 255 ~/ 1),
               borderRadius: BorderRadius.circular(4),
             ),
             child: LayoutBuilder(
@@ -184,12 +211,12 @@ class AboutPage extends StatelessWidget {
                           width: constraints.maxWidth * value,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [color.withOpacity(0.5), color],
+                              colors: [color.withAlpha(0.5 * 255 ~/ 1), color],
                             ),
                             borderRadius: BorderRadius.circular(4),
                             boxShadow: [
                               BoxShadow(
-                                color: color.withOpacity(0.5),
+                                color: color.withAlpha(0.5 * 255 ~/ 1),
                                 blurRadius: 8,
                               ),
                             ],
@@ -216,7 +243,7 @@ class AboutPage extends StatelessWidget {
   IconData _getSkillIcon(String skill) {
     if (skill.contains('Frontend')) return Icons.web;
     if (skill.contains('Design')) return Icons.palette;
-    if (skill.contains('Backend')) return Icons.storage;
+    // if (skill.contains('Backend')) return Icons.storage;
     if (skill.contains('Performance')) return Icons.speed;
     return Icons.code;
   }
