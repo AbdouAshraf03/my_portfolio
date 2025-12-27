@@ -41,7 +41,8 @@ class MainTabBloc extends Bloc<MainTabEvent, MainTabState> {
         navigationCommand = 'contact';
         break;
       case 'fact':
-        response = '> This web site made with flutter :)';
+        response =
+            '> No HTML. No CSS. Just Flutter rendering the web.\n> Crafted by Abdou Ashraf me 🙂.';
       case 'help':
         response = AppConstants.helpMessage;
         break;

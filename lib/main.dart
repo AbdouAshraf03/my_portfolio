@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_portfolio/features/contact/cubit/contact_cubit.dart';
 import 'app.dart';
 import 'features/mainTab/bloc/main_tab_bloc.dart';
 
 void main() {
   runApp(
     MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => MainTabBloc())],
+      providers: [
+        BlocProvider(create: (_) => MainTabBloc()),
+        BlocProvider(create: (_) => ContactCubit()),
+      ],
       child: const PortfolioApp(),
     ),
   );
