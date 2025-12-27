@@ -40,6 +40,8 @@ class MainTabBloc extends Bloc<MainTabEvent, MainTabState> {
         response = '> Opening contact form...';
         navigationCommand = 'contact';
         break;
+      case 'fact':
+        response = '> This web site made with flutter :)';
       case 'help':
         response = AppConstants.helpMessage;
         break;
@@ -73,7 +75,7 @@ class MainTabBloc extends Bloc<MainTabEvent, MainTabState> {
 
     // Clear navigation command after emitting
     if (navigationCommand != null) {
-      await Future.delayed(const Duration(milliseconds: 100));
+      // await Future.delayed(const Duration(milliseconds: 100));
       emit(state.copyWith(navigationCommand: null));
     }
   }

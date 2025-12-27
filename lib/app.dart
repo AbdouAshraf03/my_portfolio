@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_animate/flutter_animate.dart';
 import 'core/app_theme.dart';
 
 import 'features/about_me/view/about_me_page.dart';
 import 'features/contact/view/contact_page.dart';
-import 'features/mainTab/bloc/main_tab_bloc.dart';
+
 import 'features/mainTab/view/main_tab_page.dart';
 
 import 'features/project/view/project_page.dart';
@@ -19,10 +19,7 @@ class PortfolioApp extends StatelessWidget {
       title: 'Portfolio Terminal',
       theme: AppTheme.theme,
       debugShowCheckedModeBanner: false,
-      home: MultiBlocProvider(
-        providers: [BlocProvider(create: (_) => MainTabBloc())],
-        child: const PortfolioTerminal(),
-      ),
+      home: const PortfolioTerminal(),
     );
   }
 }
@@ -72,7 +69,7 @@ class _PortfolioTerminalState extends State<PortfolioTerminal>
                 end: Alignment.bottomRight,
                 colors: [
                   AppTheme.darkBg,
-                  AppTheme.deepPurple.withOpacity(0.2),
+                  AppTheme.deepPurple.withAlpha(0.2 * 255 ~/ 1),
                   AppTheme.darkBg,
                 ],
                 stops: [0.0, 0.5 + _backgroundController.value * 0.3, 1.0],
@@ -138,7 +135,7 @@ class _PortfolioTerminalState extends State<PortfolioTerminal>
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.3),
+        color: Colors.black.withAlpha(0.3 * 255 ~/ 1),
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(12),
           topRight: Radius.circular(12),
@@ -157,7 +154,7 @@ class _PortfolioTerminalState extends State<PortfolioTerminal>
             style: TextStyle(color: Colors.white70, fontSize: 13),
           ),
           const Spacer(),
-          // Minimize, maximize, close icons (decorative)
+
           Icon(Icons.minimize, size: 16, color: Colors.white30),
           const SizedBox(width: 8),
           Icon(Icons.crop_square, size: 14, color: Colors.white30),
@@ -175,7 +172,9 @@ class _PortfolioTerminalState extends State<PortfolioTerminal>
       decoration: BoxDecoration(
         color: color,
         shape: BoxShape.circle,
-        boxShadow: [BoxShadow(color: color.withOpacity(0.6), blurRadius: 4)],
+        boxShadow: [
+          BoxShadow(color: color.withAlpha(0.6 * 255 ~/ 1), blurRadius: 4),
+        ],
       ),
     );
   }
@@ -185,7 +184,7 @@ class _PortfolioTerminalState extends State<PortfolioTerminal>
       padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: Colors.white.withOpacity(0.1)),
+          bottom: BorderSide(color: Colors.white.withAlpha(0.1 * 255 ~/ 1)),
         ),
       ),
       child: Row(
@@ -245,7 +244,7 @@ class _TabButtonState extends State<_TabButton> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
           decoration: BoxDecoration(
             color: _isHovered && !widget.isActive
-                ? Colors.white.withOpacity(0.05)
+                ? Colors.white.withAlpha(0.05 * 255 ~/ 1)
                 : Colors.transparent,
             border: Border(
               bottom: BorderSide(

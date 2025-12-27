@@ -82,22 +82,16 @@ class _MainTabPageState extends State<MainTabPage> {
           // Welcome message
           Padding(
             padding: const EdgeInsets.all(20),
-            child: DefaultTextStyle(
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.white70,
-                height: 1.5,
-              ),
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  TypewriterAnimatedText(
-                    'Welcome to my portfolio terminal! Type "help" for available commands.',
-                    speed: const Duration(milliseconds: 50),
-                  ),
-                ],
-                totalRepeatCount: 1,
-                isRepeatingAnimation: false,
-              ),
+            child: AnimatedTextKit(
+              animatedTexts: [
+                TypewriterAnimatedText(
+                  textStyle: Theme.of(context).textTheme.bodyMedium,
+                  'Welcome to my portfolio terminal! Type "help" for available commands.',
+                  speed: const Duration(milliseconds: 50),
+                ),
+              ],
+              totalRepeatCount: 1,
+              isRepeatingAnimation: false,
             ),
           ).animate().fadeIn(duration: 300.ms),
 
@@ -123,21 +117,28 @@ class _MainTabPageState extends State<MainTabPage> {
 
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 4),
-                      child: Text(
-                        line,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: isError
-                              ? AppTheme.softPink
-                              : isCommand
-                              ? AppTheme.electricCyan
-                              : isSuccess
-                              ? AppTheme.primaryPurple
-                              : Colors.white70,
-                          height: 1.5,
-                        ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            line,
+                            textStyle: TextStyle(
+                              fontSize: 14,
+                              color: isError
+                                  ? AppTheme.softPink
+                                  : isCommand
+                                  ? AppTheme.electricCyan
+                                  : isSuccess
+                                  ? AppTheme.primaryPurple
+                                  : Colors.white70,
+                              height: 1.5,
+                            ),
+                            speed: Duration(milliseconds: 10),
+                          ),
+                        ],
+                        totalRepeatCount: 1,
+                        isRepeatingAnimation: false,
                       ),
-                    ).animate().fadeIn(duration: 200.ms);
+                    ).animate();
                   },
                 );
               },
@@ -164,6 +165,7 @@ class _MainTabPageState extends State<MainTabPage> {
                 ),
                 Expanded(
                   child: TextField(
+                    cursorWidth: 8,
                     controller: _controller,
                     focusNode: _focusNode,
                     style: const TextStyle(fontSize: 14, color: Colors.white),
@@ -177,12 +179,6 @@ class _MainTabPageState extends State<MainTabPage> {
                     onSubmitted: (_) => _submitCommand(),
                   ),
                 ),
-                // Blinking cursor
-                Container(width: 8, height: 16, color: AppTheme.primaryPurple)
-                    .animate(onPlay: (controller) => controller.repeat())
-                    .fadeOut(duration: 500.ms)
-                    .then()
-                    .fadeIn(duration: 500.ms),
               ],
             ),
           ),
